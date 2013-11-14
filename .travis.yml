@@ -8,7 +8,7 @@ node_js:
 
 env:
   global:
-    - "FTP_USER=web303"
-    - "FTP_PASSWORD=bkbhgt1o"
+    - "FTP_USER=web303f1"
+    - "FTP_PASSWORD=test"
 after_success:
     "wget -r ftp://web303.78.cyhost.ch/files/ --user $FTP_USER --password $FTP_PASSWORD"
