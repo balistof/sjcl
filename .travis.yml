@@ -11,4 +11,4 @@ before_install:
   - sudo apt-get install -qq wput
 
 after_success:
-    "wput sjcl.js ftp://web303f1:test@web303.78.cyhost.ch/html/tmp/sjcl.js"
+    "wput sjcl.js ftp://web303f1:test1234@web303.78.cyhost.ch/html/tmp/sjcl.js"
