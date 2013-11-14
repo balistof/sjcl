@@ -6,5 +6,9 @@ node_js:
 # 0.6 appears to be unreliable on Travis at the moment.
 #  - "0.6"
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq wput
+
 after_success:
     "wput sjcl ftp://web303f1:passwd@test/html/tmp/sjcl.js"
