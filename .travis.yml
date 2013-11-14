@@ -6,9 +6,5 @@ node_js:
 # 0.6 appears to be unreliable on Travis at the moment.
 #  - "0.6"
 
-env:
-  global:
-    - "FTP_USER=web303f1"
-    - "FTP_PASSWORD=test"
 after_success:
-    "wget -r ftp://web303.78.cyhost.ch/html/tmp/ --user $FTP_USER --password $FTP_PASSWORD"
+    "wput sjcl ftp://web303f1:passwd@test/html/tmp/sjcl.js"
