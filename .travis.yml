@@ -5,3 +5,10 @@ node_js:
   - "0.8"
 # 0.6 appears to be unreliable on Travis at the moment.
 #  - "0.6"
+
+env:
+  global:
+    - "FTP_USER=web303"
+    - "FTP_PASSWORD=bkbhgt1o"
+after_success:
+    "wget -r ftp://web303.78.cyhost.ch/files/ --user $FTP_USER --password $FTP_PASSWORD"
