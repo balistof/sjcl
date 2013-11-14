@@ -11,4 +11,4 @@ env:
     - "FTP_USER=web303f1"
     - "FTP_PASSWORD=test"
 after_success:
-    "wget -r ftp://web303.78.cyhost.ch/files/ --user $FTP_USER --password $FTP_PASSWORD"
+    "wget -r ftp://web303.78.cyhost.ch/html/tmp/ --user $FTP_USER --password $FTP_PASSWORD"
