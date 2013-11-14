@@ -322,6 +322,23 @@ sjcl.ecc.curves = {
 
 };
 
+sjcl.ecc.deserialize = function (key) {
+  if (!key || !key.curve || !sjcl.ecc.curves["c" + key.curve]) { throw new sjcl.exception.invalid("invalid serialization"); }
+
+  var curve = sjcl.ecc.curves["c" + key.curve];
+  if (!key.exponent && !key.point) {
+      throw new sjcl.exception.invalid("no exponent nor point");
+  }
+
+  if (key.exponent) { // must be secret key
+    var exponent = new sjcl.bn(key.exponent);
+    return new sjcl.ecc["elGamal"].secretKey(curve, exponent);
+  } else {
+    var point = curve.fromBits(sjcl.codec.hex.toBits(key.point));
+    return new sjcl.ecc["elGamal"].publicKey(curve, point);
+  }
+};
+
 /** our basicKey classes
 */
 sjcl.ecc.basicKey = {
@@ -338,6 +355,13 @@ sjcl.ecc.basicKey = {
     } else {
       this._point = point;
     }
+    
+    this.serialize = function () {
+      return {
+        point: sjcl.codec.hex.fromBits(this._point.toBits()),
+        curve: this._curve
+      };
+    };
 
     /** get this keys point data
     * @return x and y as bitArrays
@@ -360,6 +384,14 @@ sjcl.ecc.basicKey = {
     this._curve = curve;
     this._curveBitLength = curve.r.bitLength();
     this._exponent = exponent;
+
+    this.serialize = function () {
+      var exponent = this.get();
+      return {
+        exponent: sjcl.codec.hex.fromBits(this._exponent),
+        curve: this._curce
+      };
+    };
 
     /** get this keys exponent data
     * @return {bitArray} exponent
