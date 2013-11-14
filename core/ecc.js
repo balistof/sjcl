@@ -359,7 +359,7 @@ sjcl.ecc.basicKey = {
     this.serialize = function () {
       return {
         point: sjcl.codec.hex.fromBits(this._point.toBits()),
-        curve: this._curve
+        curve: this._curveBitLength
       };
     };
 
@@ -389,7 +389,7 @@ sjcl.ecc.basicKey = {
       var exponent = this.get();
       return {
         exponent: sjcl.codec.hex.fromBits(this._exponent),
-        curve: this._curce
+        curve: this._curveBitLength
       };
     };
 
