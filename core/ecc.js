@@ -388,7 +388,7 @@ sjcl.ecc.basicKey = {
     this.serialize = function () {
       var exponent = this.get();
       return {
-        exponent: sjcl.codec.hex.fromBits(this._exponent),
+        exponent: sjcl.codec.hex.fromBits(this._exponent.toBits()),
         curve: this._curveBitLength
       };
     };
